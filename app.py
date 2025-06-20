@@ -24,7 +24,8 @@ st.caption("Topik: Frekuensi Harapan (Etnomatematika — Cublak‑Cublak Suweng)
 with st.expander("📌 Petunjuk Pengerjaan"):
     st.write("""
     - Masukkan nama kamu terlebih dahulu.
-    - Jawablah 6 soal pilihan ganda yang tersedia.
+    - Bacalah soal dengan saksama.
+    - Pilih jawaban yang menurutmu benar.
     - Klik tombol **Kirim Jawaban** untuk melihat hasil.
     """)
 
