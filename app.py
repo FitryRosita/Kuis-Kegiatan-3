@@ -105,7 +105,7 @@ else:
         # =======================
         # Tampilan hasil akhir menarik
         st.markdown("---")
-        st.markdown("## Ringkasan Nilai Akhir")
+        st.subheader("🎓 Ringkasan Nilai Akhir")
         st.markdown(f"""
             <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: left;'>
                 <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h2>
