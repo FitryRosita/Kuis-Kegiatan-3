@@ -88,18 +88,25 @@ else:
 
     # =======================
     if st.button("📨 Kirim Jawaban"):
-        skor = 0
-        st.subheader("📊 Hasil Kuis")
-        for i, jawaban in enumerate(jawaban_pengguna):
-            benar = soal_pilgan[i]["jawaban"]
-            if jawaban == benar:
-                skor += 1
-                st.success(f"Soal {i+1}: ✅ Benar! Jawaban: {benar}")
-            else:
-                st.error(f"Soal {i+1}: ❌ Salah. Jawaban yang benar adalah {benar}")
+    skor = 0
+    st.subheader("📊 Hasil Kuis")
+    for i, jawaban in enumerate(jawaban_pengguna):
+        benar = soal_pilgan[i]["jawaban"]
+        if jawaban == benar:
+            skor += 1
+            st.success(f"Soal {i+1}: ✅ Benar! Jawaban: {benar}")
+        else:
+            st.error(f"Soal {i+1}: ❌ Salah. Jawaban yang benar adalah {benar}")
 
-        nilai = int((skor / len(soal_pilgan)) * 100)
-        st.markdown("---")
-        st.markdown(f"**Nama:** {st.session_state.nama}")
-        st.markdown(f"**Jawaban Benar:** {skor} dari {len(soal_pilgan)} soal")
-        st.markdown(f"🎉 **Nilai Akhir: {nilai}/100**")
+    nilai = int((skor / len(soal_pilgan)) * 100)
+
+    # Tampilan hasil akhir yang lebih mencolok
+    st.markdown("---")
+    st.markdown("## 🎓 Ringkasan Nilai Akhir")
+    st.markdown(f"""
+        <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: center;'>
+            <h2 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h2>
+            <h3 style='color:#2e7d32;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
+            <h1 style='color:#d84315;'>🎉 Nilai Akhir: <b>{nilai}/100</b></h1>
+        </div>
+    """, unsafe_allow_html=True)
