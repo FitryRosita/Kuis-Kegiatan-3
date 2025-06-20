@@ -69,7 +69,7 @@ soal_pilgan = [
     }
 ]
 
-# ====== Tampilkan Soal Kuis Jika Sudah Siap ======
+# ====== Tampilkan Soal Jika Sudah Siap ======
 if tampilkan_soal:
     with st.form("quiz_form"):
         jawaban_siswa = [
@@ -78,27 +78,36 @@ if tampilkan_soal:
         ]
         submit = st.form_submit_button("✅ Kirim Jawaban")
 
-   if submit:
-    benar = sum(
-        1 for i, soal in enumerate(soal_pilgan)
-        if jawaban_siswa[i].split(".")[0] == soal["jawaban"]
-    )
-    total = len(soal_pilgan)
-    nilai = int((benar / total) * 100)
+    if submit:
+        benar = sum(
+            1 for i, soal in enumerate(soal_pilgan)
+            if jawaban_siswa[i].split(".")[0] == soal["jawaban"]
+        )
+        total = len(soal_pilgan)
+        nilai = int((benar / total) * 100)
 
-    if nilai == 100:
-        st.balloons()
-    elif nilai >= 80:
-        st.snow()
+        if nilai == 100:
+            st.balloons()
+        elif nilai >= 80:
+            st.snow()
 
-    st.success(f"✅ Kamu menjawab benar {benar} dari {total} soal.")
-    st.info(f"📊 Nilai kamu: **{nilai}/100**")
+        st.success(f"✅ Kamu menjawab benar {benar} dari {total} soal.")
+        st.info(f"📊 Nilai kamu: **{nilai}/100**")
 
-    st.subheader("🔍 Pembahasan Soal")
-    for i, soal in enumerate(soal_pilgan):
-        jaw = jawaban_siswa[i].split(".")[0]
-        benar_ = soal["jawaban"]
-        if jaw == benar_:
-            st.write(f"✅ Soal {i+1}: Jawaban kamu *{jaw}* — **Benar**")
-        else:
-            st.write(f"❌ Soal {i+1}: Jawaban kamu *{jaw}* — ❗ **Salah**. Jawaban benar: *{benar_}*")
+        st.subheader("🔍 Pembahasan Soal")
+        for i, soal in enumerate(soal_pilgan):
+            jaw = jawaban_siswa[i].split(".")[0]
+            benar_ = soal["jawaban"]
+            if jaw == benar_:
+                st.write(f"✅ Soal {i+1}: Jawaban kamu *{jaw}* — **Benar**")
+            else:
+                st.write(f"❌ Soal {i+1}: Jawaban kamu *{jaw}* — ❗ **Salah**. Jawaban benar: *{benar_}*")
+
+        hasil = {
+            "nama": nama,
+            "benar": benar,
+            "total": total,
+            "nilai": nilai,
+            "jawaban": jawaban_siswa
+        }
+        joblib.dump(hasil, "hasil_kuis_fitry.pkl")
