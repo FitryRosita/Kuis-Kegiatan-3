@@ -107,9 +107,9 @@ else:
         st.markdown("---")
         st.markdown("## 🎓 Ringkasan Nilai Akhir")
         st.markdown(f"""
-            <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: center;'>
-                <h2 style='color:#4e342e;'>🧑 Nama: <b>{st.session_state.nama}</b></h2>
-                <h3 style='color:#2e7d32;'>✅ Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
+            <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: left;'>
+                <h2 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h2>
+                <h3 style='color:#2e7d32;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
                 <h1 style='color:#d84315;'>🎉 Nilai Akhir: <b>{nilai}/100</b></h1>
             </div>
         """, unsafe_allow_html=True)
