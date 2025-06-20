@@ -5,7 +5,7 @@ import joblib
 st.set_page_config(page_title="🎮 Kuis Interaktif - Kegiatan 3", page_icon="🎮")
 
 # =======================
-# CSS untuk background cokelat muda
+# CSS: Background cokelat muda
 st.markdown("""
     <style>
     .stApp {
@@ -21,19 +21,20 @@ st.caption("Topik: Frekuensi Harapan (Etnomatematika — Cublak‑Cublak Suweng)
 
 # =======================
 # Petunjuk
-with st.expander("📌 Petunjuk Pengerjaan"):
+with st.expander("📌 Petunjuk Pengerjaan", expanded=True):
     st.write("""
     - Masukkan nama kamu terlebih dahulu.
-    - Bacalah soal dengan saksama.
-    - Pilih jawaban yang menurutmu benar.
+    - Jawablah 6 soal pilihan ganda yang tersedia.
     - Klik tombol **Kirim Jawaban** untuk melihat hasil.
     """)
 
 # =======================
-# Input nama dan kontrol state
+# Session state untuk kontrol alur
 if "nama_dikunci" not in st.session_state:
     st.session_state.nama_dikunci = False
 
+# =======================
+# Input Nama
 if not st.session_state.nama_dikunci:
     nama = st.text_input("Masukkan nama kamu:")
     if nama:
@@ -41,6 +42,7 @@ if not st.session_state.nama_dikunci:
             st.session_state.nama = nama
             st.session_state.nama_dikunci = True
 else:
+    # =======================
     st.success(f"Halo, {st.session_state.nama}! Silakan mengerjakan kuis di bawah ini. Semangat ya 🎯")
 
     # =======================
@@ -88,25 +90,26 @@ else:
 
     # =======================
     if st.button("📨 Kirim Jawaban"):
-    skor = 0
-    st.subheader("📊 Hasil Kuis")
-    for i, jawaban in enumerate(jawaban_pengguna):
-        benar = soal_pilgan[i]["jawaban"]
-        if jawaban == benar:
-            skor += 1
-            st.success(f"Soal {i+1}: ✅ Benar! Jawaban: {benar}")
-        else:
-            st.error(f"Soal {i+1}: ❌ Salah. Jawaban yang benar adalah {benar}")
+        skor = 0
+        st.subheader("📊 Hasil Kuis")
+        for i, jawaban in enumerate(jawaban_pengguna):
+            benar = soal_pilgan[i]["jawaban"]
+            if jawaban == benar:
+                skor += 1
+                st.success(f"Soal {i+1}: ✅ Benar! Jawaban: {benar}")
+            else:
+                st.error(f"Soal {i+1}: ❌ Salah. Jawaban yang benar adalah {benar}")
 
-    nilai = int((skor / len(soal_pilgan)) * 100)
+        nilai = int((skor / len(soal_pilgan)) * 100)
 
-    # Tampilan hasil akhir yang lebih mencolok
-    st.markdown("---")
-    st.markdown("## 🎓 Ringkasan Nilai Akhir")
-    st.markdown(f"""
-        <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: center;'>
-            <h2 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h2>
-            <h3 style='color:#2e7d32;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
-            <h1 style='color:#d84315;'>🎉 Nilai Akhir: <b>{nilai}/100</b></h1>
-        </div>
-    """, unsafe_allow_html=True)
+        # =======================
+        # Tampilan hasil akhir menarik
+        st.markdown("---")
+        st.markdown("## 🎓 Ringkasan Nilai Akhir")
+        st.markdown(f"""
+            <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: center;'>
+                <h2 style='color:#4e342e;'>🧑 Nama: <b>{st.session_state.nama}</b></h2>
+                <h3 style='color:#2e7d32;'>✅ Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
+                <h1 style='color:#d84315;'>🎉 Nilai Akhir: <b>{nilai}/100</b></h1>
+            </div>
+        """, unsafe_allow_html=True)
