@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 
 # Konfigurasi halaman
-st.set_page_config(page_title="🎮 Kuis Interaktif - Kegiatan 3", page_icon="🎮")
+st.set_page_config(page_title="Kuis Interaktif - Kegiatan 3", page_icon="🌷")
 
 # =======================
 # CSS: Background cokelat muda
