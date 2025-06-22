@@ -5,11 +5,11 @@ import joblib
 st.set_page_config(page_title="Kuis Interaktif - Kegiatan 3", page_icon="🌷")
 
 # =======================
-# CSS: Background cokelat muda
+# CSS: Background pink muda
 st.markdown("""
     <style>
     .stApp {
-        background-color: #f5e8dc;
+        background-color: #f8f4f2;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -107,7 +107,7 @@ else:
         st.markdown("---")
         st.subheader("🎓 Ringkasan Nilai Akhir")
         st.markdown(f"""
-            <div style='background-color:#fff8e1; padding: 20px; border-radius: 10px; text-align: left;'>
+            <div style='background-color:#eeeae7; padding: 20px; border-radius: 10px; text-align: left;'>
                 <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h2>
                 <h5 style='color:#4e342e;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h3>
                 <h3 style='color:#d84315;'>🎉 Nilai Akhir: <b>{nilai}/100</b></h1>
